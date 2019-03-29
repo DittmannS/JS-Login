@@ -10,6 +10,10 @@ const USER = document.querySelector('#login .username');
 const PASSWORD = document.querySelector('#login .password');
 const SUBMIT = document.querySelector('input.submit');
 
+let goInside = function() {
+    location.replace('test.html');
+};
+
 let login = function() {
     let isUser = DB_MEMBER.map(function(e) { 
         return e.username; 
@@ -18,7 +22,8 @@ let login = function() {
     if(isUser >= 0){
         if(DB_MEMBER[isUser].username == USER.value) {
             if(DB_MEMBER[isUser].password == PASSWORD.value) {
-                window.location.replace('test.html');
+                sessionStorage.setItem('login', 'yes');
+                goInside();
             }else {
                 console.log('Benutzer nicht bekannt oder Passwort falsch');
             }
